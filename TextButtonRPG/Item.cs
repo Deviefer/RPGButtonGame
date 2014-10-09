@@ -8,16 +8,16 @@ namespace TextButtonRPG
 {
     public class Item
     {
-        int minDamage, maxDamage, str, dex, intel, agi, armor, reqLevel, critChance = 0;
-        bool equipped = false;
-        Hero.Job reqClass;
-        string name;
-        string suffix;
-        bool suffixFlag; //triggers when the suffix does not match the slot of the item it's for
-        string description;
+        private int minDamage, maxDamage, str, dex, intel, agi, armor, reqLevel, critChance = 0, bPrice, sPrice;
+        private bool equipped = false;
+        private Hero.Job reqClass;
+        private string name;
+        private string suffix;
+        private bool suffixFlag; //triggers when the suffix does not match the slot of the item it's for
+        private string description;
         public string Description { get { return description; } }
-        string[] suffixes = { " of Shining", " of Death", " of Brutality", " of Concannon", " of Shock", " of Heartbreak",/* " of Silence",*/ " of Flame", " of Luck" };
-        Slot slot;
+        private string[] suffixes = { " of Shining", " of Death", " of Brutality", " of Concannon", " of Shock", " of Heartbreak",/* " of Silence",*/ " of Flame", " of Luck" };
+        private Slot slot;
 
         public enum Slot
         {
@@ -98,6 +98,8 @@ namespace TextButtonRPG
                     agi = 0;
                     slot = Slot.Weapon;
                     description = "A Feather Sword.";
+                    bPrice = 25;
+                    sPrice = 5;
                     break;
                 case "Feather Helmet":
                     minDamage = 0;
@@ -109,6 +111,8 @@ namespace TextButtonRPG
                     agi = 0;
                     slot = Slot.Helmet;
                     description = "A Feather Helmet.";
+                    bPrice = 25;
+                    sPrice = 5;
                     break;
                 case "Feather Armor":
                     minDamage = 0;
@@ -120,6 +124,8 @@ namespace TextButtonRPG
                     agi = 0;
                     slot = Slot.Armor;
                     description = "Some Feather Armor.";
+                    bPrice = 40;
+                    sPrice = 10;
                     break;
                 case "Feather Bow":
                     minDamage = 4;
@@ -131,6 +137,8 @@ namespace TextButtonRPG
                     agi = 0;
                     slot = Slot.Weapon;
                     description = "A Feather Bow.";
+                    bPrice = 25;
+                    sPrice = 5;
                     break;
                 case "Feather Dagger":
                     minDamage = 3;
@@ -142,6 +150,8 @@ namespace TextButtonRPG
                     agi = 0;
                     slot = Slot.Weapon;
                     description = "A Feather Dagger.";
+                    bPrice = 25;
+                    sPrice = 5;
                     break;
                 case "Feather Axe":
                     minDamage = 6;
@@ -153,6 +163,8 @@ namespace TextButtonRPG
                     agi = 0;
                     slot = Slot.Weapon;
                     description = "A Feather Axe.";
+                    bPrice = 25;
+                    sPrice = 5;
                     break;
                 case "Feather Staff":
                     minDamage = 4;
@@ -164,6 +176,8 @@ namespace TextButtonRPG
                     agi = 0;
                     slot = Slot.Weapon;
                     description = "A Feather Staff.";
+                    bPrice = 25;
+                    sPrice = 5;
                     break;
                 case "Wooden Sword":
                     minDamage = 13;
@@ -175,6 +189,8 @@ namespace TextButtonRPG
                     agi = 0;
                     slot = Slot.Weapon;
                     description = "A Wooden Sword.";
+                    bPrice = 50;
+                    sPrice = 25;
                     break;
                 case "Wooden Helm":
                     minDamage = 0;
@@ -186,6 +202,8 @@ namespace TextButtonRPG
                     agi = 0;
                     slot = Slot.Helmet;
                     description = "A Wooden Helmet.";
+                    bPrice = 50;
+                    sPrice = 25;
                     break;
                 case "Wooden Armor":
                     minDamage = 0;
@@ -197,6 +215,8 @@ namespace TextButtonRPG
                     agi = 0;
                     slot = Slot.Armor;
                     description = "Some Wooden Armor.";
+                    bPrice = 75;
+                    sPrice = 35;
                     break;
                 case "Wooden Bow":
                     minDamage = 13;
@@ -208,6 +228,8 @@ namespace TextButtonRPG
                     agi = 0;
                     slot = Slot.Weapon;
                     description = "A Wooden Bow.";
+                    bPrice = 50;
+                    sPrice = 25;
                     break;
                 case "Wooden Dagger":
                     minDamage = 12;
@@ -219,6 +241,8 @@ namespace TextButtonRPG
                     agi = 2;
                     slot = Slot.Weapon;
                     description = "A Wooden Dagger.";
+                    bPrice = 50;
+                    sPrice = 25;
                     break;
                 case "Wooden Axe":
                     minDamage = 17;
@@ -230,6 +254,8 @@ namespace TextButtonRPG
                     agi = 0;
                     slot = Slot.Weapon;
                     description = "A Wooden Axe.";
+                    bPrice = 50;
+                    sPrice = 25;
                     break;
                 case "Wooden Staff":
                     minDamage = 14;
@@ -241,6 +267,8 @@ namespace TextButtonRPG
                     agi = 0;
                     slot = Slot.Weapon;
                     description = "A Wooden Staff.";
+                    bPrice = 50;
+                    sPrice = 25;
                     break;
                 case "Iron Sword":
                     minDamage = 21;
@@ -252,6 +280,8 @@ namespace TextButtonRPG
                     agi = 0;
                     slot = Slot.Weapon;
                     description = "An Iron Sword.";
+                    bPrice = 100;
+                    sPrice = 50;
                     break;
                 case "Iron Helm":
                     minDamage = 0;
@@ -263,6 +293,8 @@ namespace TextButtonRPG
                     agi = 0;
                     slot = Slot.Helmet;
                     description = "An Iron Helmet.";
+                    bPrice = 100;
+                    sPrice = 50;
                     break;
                 case "Iron Armor":
                     minDamage = 0;
@@ -274,6 +306,8 @@ namespace TextButtonRPG
                     agi = 0;
                     slot = Slot.Armor;
                     description = "Some Iron Armor.";
+                    bPrice = 150;
+                    sPrice = 75;
                     break;
                 case "Iron Bow":
                     minDamage = 21;
@@ -285,6 +319,8 @@ namespace TextButtonRPG
                     agi = 0;
                     slot = Slot.Weapon;
                     description = "An Iron Bow.";
+                    bPrice = 100;
+                    sPrice = 50;
                     break;
                 case "Iron Dagger":
                     minDamage = 17;
@@ -296,6 +332,8 @@ namespace TextButtonRPG
                     agi = 4;
                     slot = Slot.Weapon;
                     description = "An Iron Dagger.";
+                    bPrice = 100;
+                    sPrice = 50;
                     break;
                 case "Iron Axe":
                     minDamage = 24;
@@ -307,6 +345,8 @@ namespace TextButtonRPG
                     agi = 0;
                     slot = Slot.Weapon;
                     description = "An Iron Axe.";
+                    bPrice = 100;
+                    sPrice = 50;
                     break;
                 case "Iron Staff":
                     minDamage = 21;
@@ -318,6 +358,8 @@ namespace TextButtonRPG
                     agi = 0;
                     slot = Slot.Weapon;
                     description = "An Iron Staff.";
+                    bPrice = 100;
+                    sPrice = 50;
                     break;
                 default:
                     name = "";
@@ -397,6 +439,16 @@ namespace TextButtonRPG
         public int getMaxDmg()
         {
             return maxDamage;
+        }
+
+        public int getBuyPrice()
+        {
+            return bPrice;
+        }
+
+        public int getSellPrice()
+        {
+            return sPrice;
         }
 
         public void setEquipped()

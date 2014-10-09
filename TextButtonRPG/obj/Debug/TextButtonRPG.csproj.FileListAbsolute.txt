@@ -17,3 +17,17 @@ C:\Users\Kevin\documents\visual studio 2013\Projects\TextButtonRPG\TextButtonRPG
 C:\Users\Kevin\Documents\GitHub\RPGButtonGame\TextButtonRPG\bin\Debug\TextButtonRPG.exe.config
 C:\Users\Kevin\Documents\GitHub\RPGButtonGame\TextButtonRPG\obj\Debug\TextButtonRPG.exe
 C:\Users\Kevin\Documents\GitHub\RPGButtonGame\TextButtonRPG\obj\Debug\TextButtonRPG.pdb
+C:\Users\Kevin\Documents\GitHub\RPGButtonGame\TextButtonRPG\bin\Debug\TextButtonRPG.exe.manifest
+C:\Users\Kevin\Documents\GitHub\RPGButtonGame\TextButtonRPG\bin\Debug\TextButtonRPG.application
+C:\Users\Kevin\Documents\GitHub\RPGButtonGame\TextButtonRPG\bin\Debug\TextButtonRPG.exe
+C:\Users\Kevin\Documents\GitHub\RPGButtonGame\TextButtonRPG\bin\Debug\TextButtonRPG.pdb
+C:\Users\Kevin\Documents\GitHub\RPGButtonGame\TextButtonRPG\obj\Debug\TextButtonRPG.csprojResolveAssemblyReference.cache
+C:\Users\Kevin\Documents\GitHub\RPGButtonGame\TextButtonRPG\obj\Debug\TextButtonRPG.ClassSelector.resources
+C:\Users\Kevin\Documents\GitHub\RPGButtonGame\TextButtonRPG\obj\Debug\TextButtonRPG.Form1.resources
+C:\Users\Kevin\Documents\GitHub\RPGButtonGame\TextButtonRPG\obj\Debug\TextButtonRPG.Intro.resources
+C:\Users\Kevin\Documents\GitHub\RPGButtonGame\TextButtonRPG\obj\Debug\TextButtonRPG.NamingBox.resources
+C:\Users\Kevin\Documents\GitHub\RPGButtonGame\TextButtonRPG\obj\Debug\TextButtonRPG.Properties.Resources.resources
+C:\Users\Kevin\Documents\GitHub\RPGButtonGame\TextButtonRPG\obj\Debug\TextButtonRPG.Shop.resources
+C:\Users\Kevin\Documents\GitHub\RPGButtonGame\TextButtonRPG\obj\Debug\TextButtonRPG.csproj.GenerateResource.Cache
+C:\Users\Kevin\Documents\GitHub\RPGButtonGame\TextButtonRPG\obj\Debug\TextButtonRPG.exe.manifest
+C:\Users\Kevin\Documents\GitHub\RPGButtonGame\TextButtonRPG\obj\Debug\TextButtonRPG.application

@@ -17,7 +17,9 @@ namespace TextButtonRPG
         private Item weapon = new Item();
         private Item armor = new Item();
         private Item helmet = new Item();
-        List<Item> equippedItems = new List<Item>();
+        private List<Item> equippedItems = new List<Item>();
+        public Item[] inventory = new Item[50];
+        public string[] invNames = new string[50];
 
         public enum Job
         {
@@ -25,6 +27,14 @@ namespace TextButtonRPG
             Mage,
             Bowman,
             Ninja
+        }
+
+        public Hero(int g, Item[] inv, string[] invN, int slots)
+        {
+            gold = g;
+            inventory = inv;
+            invNames = invN;
+            slotsInUse = slots;
         }
 
         public Hero(string nm = "", int h = 50, int m = 30, int lvl = 1, int st = 5, int ag = 5, int dx = 5, int inte = 5, int g = 0)
@@ -478,6 +488,23 @@ namespace TextButtonRPG
         public List<Item> getEquippedItems()
         {
             return equippedItems;
+        }
+
+        public void addItem(Item item)
+        {
+            inventory[slotsInUse] = item;
+            invNames[slotsInUse] = item.getName();
+            incSlots();
+        }
+
+        public Item[] getInventory()
+        {
+            return inventory;
+        }
+
+        public Item getInventory(int index)
+        {
+            return inventory[index];
         }
     }
 }

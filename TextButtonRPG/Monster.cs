@@ -122,7 +122,7 @@ namespace TextButtonRPG
                 case "Mort":
                     maxHealth = 90;
                     maxMana = 25;
-                    curHealth = 25;
+                    curHealth = 90;
                     curMana = 5;
                     exp = 13;
                     level = 4;

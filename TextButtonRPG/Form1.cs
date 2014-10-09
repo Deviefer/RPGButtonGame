@@ -59,8 +59,8 @@ namespace TextButtonRPG
 
             textBox2.Text = player.getPlayerInfo();
             for (int i = 0; i < player.getSlotsInUse(); i++ )
-                invNames[i] = inventory[i].getName();
-            listBox1.DataSource = invNames;
+                player.invNames[i] = player.getInventory(i).getName();
+            listBox1.DataSource = player.invNames;
             //listBox1.ContextMenuStrip = rightClickItem;
         }
 
@@ -193,7 +193,7 @@ namespace TextButtonRPG
         {
             if (listBox1.SelectedIndex != -1)
             {
-                textBox4.Text = inventory[listBox1.SelectedIndex].printItemInfo();
+                textBox4.Text = player.getInventory(listBox1.SelectedIndex).printItemInfo();
             }
         }
 
@@ -207,17 +207,17 @@ namespace TextButtonRPG
             rightClickItem.Items.Clear();
             if (listBox1.SelectedIndex != -1)
             {
-                if (inventory[listBox1.SelectedIndex].getSlot() == Item.Slot.Weapon)
+                if (player.getInventory(listBox1.SelectedIndex].getSlot() == Item.Slot.Weapon)
                 {
                     rightClickItem.Items.Add("Equip Weapon");
                     rightClickItem.Click += new System.EventHandler(equip_weapon);
                 }
-                else if (inventory[listBox1.SelectedIndex].getSlot() == Item.Slot.Armor)
+                else if (player.getInventory(listBox1.SelectedIndex].getSlot() == Item.Slot.Armor)
                 {
                     rightClickItem.Items.Add("Equip Armor");
                     rightClickItem.Click += new System.EventHandler(equip_armor);
                 }
-                else if (inventory[listBox1.SelectedIndex].getSlot() == Item.Slot.Helmet)
+                else if (player.getInventory(listBox1.SelectedIndex].getSlot() == Item.Slot.Helmet)
                 {
                     rightClickItem.Items.Add("Equip Helmet");
                     rightClickItem.Click += new System.EventHandler(equip_helmet);
@@ -227,26 +227,26 @@ namespace TextButtonRPG
 
         public void equip_helmet(object sender, EventArgs e)
         {
-            player.equipHelmet(inventory[listBox1.SelectedIndex]);
+            player.equipHelmet(player.getInventory(listBox1.SelectedIndex]);
             updatePlayerText();
-            if (player.getHelmet() != inventory[listBox1.SelectedIndex])
-                textBox1.AppendText(DateTime.Now.ToShortTimeString() + " - " + inventory[listBox1.SelectedIndex].getName() + " has been equipped.\r\n");
+            if (player.getHelmet() != player.getInventory(listBox1.SelectedIndex])
+                textBox1.AppendText(DateTime.Now.ToShortTimeString() + " - " + player.getInventory(listBox1.SelectedIndex].getName() + " has been equipped.\r\n");
         }
 
         public void equip_armor(object sender, EventArgs e)
         {
-            player.equipArmor(inventory[listBox1.SelectedIndex]);
+            player.equipArmor(player.getInventory(listBox1.SelectedIndex]);
             updatePlayerText();
-            if (player.getArmor() != inventory[listBox1.SelectedIndex])
-                textBox1.AppendText(DateTime.Now.ToShortTimeString() + " - " + inventory[listBox1.SelectedIndex].getName() + " has been equipped.\r\n");
+            if (player.getArmor() != player.getInventory(listBox1.SelectedIndex])
+                textBox1.AppendText(DateTime.Now.ToShortTimeString() + " - " + player.getInventory(listBox1.SelectedIndex].getName() + " has been equipped.\r\n");
         }
 
         public void equip_weapon(object sender, EventArgs e)
         {
-            player.equipWeapon(inventory[listBox1.SelectedIndex]);
+            player.equipWeapon(player.getInventory(listBox1.SelectedIndex]);
             updatePlayerText();
-            if (player.getWeapon() != inventory[listBox1.SelectedIndex])
-                textBox1.AppendText(DateTime.Now.ToShortTimeString() + " - " + inventory[listBox1.SelectedIndex].getName() + " has been equipped.\r\n");
+            if (player.getWeapon() != player.getInventory(listBox1.SelectedIndex])
+                textBox1.AppendText(DateTime.Now.ToShortTimeString() + " - " + player.getInventory(listBox1.SelectedIndex].getName() + " has been equipped.\r\n");
         }*/
 
         public void randomMonster()
@@ -343,11 +343,12 @@ namespace TextButtonRPG
                     {
 
                         line = file.ReadLine(); //item name
-                        inventory[i] = new Item(line);
+                        //player.getInventory(i] = new Item(line);
+                        player.inventory[i] = new Item(line);
                         line = file.ReadLine(); //item suffix
-                        inventory[i].setSuffix(line);
-                        inventory[i].handleSuffix(line);
-                        invNames[i] = inventory[i].getName();
+                        player.getInventory(i).setSuffix(line);
+                        player.getInventory(i).handleSuffix(line);
+                        player.invNames[i] = player.getInventory(i).getName();
                     }
                     //update health/inventory to sync with form
                     updateInventory();
@@ -379,8 +380,8 @@ namespace TextButtonRPG
                     file.WriteLine(player.getSlotsInUse());
                     for (int i = 0; i < player.getSlotsInUse(); i++)
                     {
-                        file.WriteLine(inventory[i].getBaseName());
-                        file.WriteLine(inventory[i].getSuffix());
+                        file.WriteLine(player.getInventory(i).getBaseName());
+                        file.WriteLine(player.getInventory(i).getSuffix());
                     }
                 }
                 catch
@@ -400,9 +401,9 @@ namespace TextButtonRPG
                 {
                     Item item = new Item(m.getDropList()[chance.Next(0, m.getDropList().Count)].getName());
                     item.randomSuffix(chance);
-                    inventory[player.getSlotsInUse()] = item;
-                    invNames[player.getSlotsInUse()] = item.getName();
-                    player.incSlots();
+                    //player.getInventory(player.getSlotsInUse()] = item;
+                    player.addItem(item);
+                    player.invNames[player.getSlotsInUse()] = item.getName();
                     updateInventory();
                     textBox1.AppendText(DateTime.Now.ToShortTimeString() + " - You have found " + item.getName() + "!\r\n");
                 }
@@ -412,16 +413,15 @@ namespace TextButtonRPG
         //UPDATE INVENTORY
         public void updateInventory()
         {
-
             for (int i = 0; i < player.getSlotsInUse(); i++ )
             {
-                if (invNames[i].Contains(" (equipped)") && !inventory[i].isEquipped())
+                if (player.invNames[i].Contains(" (equipped)") && !player.getInventory(i).isEquipped())
                 {
-                    invNames[i] = invNames[i].Substring(0, invNames[i].Length - 11);
+                    player.invNames[i] = player.invNames[i].Substring(0, player.invNames[i].Length - 11);
                 }
             }
             listBox1.DataSource = null;
-            listBox1.DataSource = invNames;
+            listBox1.DataSource = player.invNames;
         }
 
         //REMOVE BUTTON
@@ -429,12 +429,12 @@ namespace TextButtonRPG
         {
             if (listBox1.SelectedIndex != -1)
             {
-                List<Item> temp = new List<Item>(inventory);
-                List<string> temp2 = new List<string>(invNames);
+                List<Item> temp = new List<Item>(player.inventory);
+                List<string> temp2 = new List<string>(player.invNames);
                 temp.RemoveAt(listBox1.SelectedIndex);
-                inventory = temp.ToArray();
+                player.inventory = temp.ToArray();
                 temp2.RemoveAt(listBox1.SelectedIndex);
-                invNames = temp2.ToArray();
+                player.invNames = temp2.ToArray();
                 player.decSlots();
                 updateInventory();
             }
@@ -443,39 +443,39 @@ namespace TextButtonRPG
         //EQUIP BUTTON
         private void button5_Click(object sender, EventArgs e)
         {
-            if (inventory[listBox1.SelectedIndex].getSlot() == Item.Slot.Helmet)
+            if (player.getInventory(listBox1.SelectedIndex).getSlot() == Item.Slot.Helmet)
             {
                 if (player.helmEquipped())
                     player.unequipItem(player.getHelmet());
-                player.equipHelmet(inventory[listBox1.SelectedIndex]);
-                inventory[listBox1.SelectedIndex].setEquipped();
+                player.equipHelmet(player.getInventory(listBox1.SelectedIndex));
+                player.getInventory(listBox1.SelectedIndex).setEquipped();
                 updatePlayerText();
-                invNames[listBox1.SelectedIndex] += " (equipped)";
-                textBox1.AppendText(DateTime.Now.ToShortTimeString() + " - " + inventory[listBox1.SelectedIndex].getName() + " has been equipped.\r\n");
+                player.invNames[listBox1.SelectedIndex] += " (equipped)";
+                textBox1.AppendText(DateTime.Now.ToShortTimeString() + " - " + player.getInventory(listBox1.SelectedIndex).getName() + " has been equipped.\r\n");
                 updateInventory();
             }
-            else if (inventory[listBox1.SelectedIndex].getSlot() == Item.Slot.Armor)
+            else if (player.getInventory(listBox1.SelectedIndex).getSlot() == Item.Slot.Armor)
             {
                 if (player.armorEquipped())
                 {
                     player.unequipItem(player.getArmor());
                 }
-                player.equipArmor(inventory[listBox1.SelectedIndex]);
-                inventory[listBox1.SelectedIndex].setEquipped();
+                player.equipArmor(player.getInventory(listBox1.SelectedIndex));
+                player.getInventory(listBox1.SelectedIndex).setEquipped();
                 updatePlayerText();
-                invNames[listBox1.SelectedIndex] += " (equipped)";
-                textBox1.AppendText(DateTime.Now.ToShortTimeString() + " - " + inventory[listBox1.SelectedIndex].getName() + " has been equipped.\r\n");
+                player.invNames[listBox1.SelectedIndex] += " (equipped)";
+                textBox1.AppendText(DateTime.Now.ToShortTimeString() + " - " + player.getInventory(listBox1.SelectedIndex).getName() + " has been equipped.\r\n");
                 updateInventory();
             }
-            else if (inventory[listBox1.SelectedIndex].getSlot() == Item.Slot.Weapon)
+            else if (player.getInventory(listBox1.SelectedIndex).getSlot() == Item.Slot.Weapon)
             {
                 if (player.weapEquipped())
                     player.unequipItem(player.getWeapon());
-                player.equipWeapon(inventory[listBox1.SelectedIndex]);
-                inventory[listBox1.SelectedIndex].setEquipped();
+                player.equipWeapon(player.getInventory(listBox1.SelectedIndex));
+                player.getInventory(listBox1.SelectedIndex).setEquipped();
                 updatePlayerText();
-                invNames[listBox1.SelectedIndex] += " (equipped)";
-                textBox1.AppendText(DateTime.Now.ToShortTimeString() + " - " + inventory[listBox1.SelectedIndex].getName() + " has been equipped.\r\n");
+                player.invNames[listBox1.SelectedIndex] += " (equipped)";
+                textBox1.AppendText(DateTime.Now.ToShortTimeString() + " - " + player.getInventory(listBox1.SelectedIndex).getName() + " has been equipped.\r\n");
                 updateInventory();
             }
         }
@@ -485,18 +485,18 @@ namespace TextButtonRPG
         {
             if (listBox1.SelectedIndex > 0)
             {
-                Item temp = new Item(inventory[listBox1.SelectedIndex - 1]);
-                string temp2 = invNames[listBox1.SelectedIndex - 1];
-                inventory[listBox1.SelectedIndex - 1] = inventory[listBox1.SelectedIndex];
-                inventory[listBox1.SelectedIndex] = temp;
-                invNames[listBox1.SelectedIndex - 1] = invNames[listBox1.SelectedIndex];
-                invNames[listBox1.SelectedIndex] = temp2;
-                if (inventory[listBox1.SelectedIndex].isEquipped())
+                Item temp = new Item(player.getInventory(listBox1.SelectedIndex - 1));
+                string temp2 = player.invNames[listBox1.SelectedIndex - 1];
+                player.inventory[listBox1.SelectedIndex - 1] = player.getInventory(listBox1.SelectedIndex);
+                player.inventory[listBox1.SelectedIndex] = temp;
+                player.invNames[listBox1.SelectedIndex - 1] = player.invNames[listBox1.SelectedIndex];
+                player.invNames[listBox1.SelectedIndex] = temp2;
+                if (player.getInventory(listBox1.SelectedIndex).isEquipped())
                 {
-                    invNames[listBox1.SelectedIndex - 1] += " (equipped)";
+                    player.invNames[listBox1.SelectedIndex - 1] += " (equipped)";
                 }
-                else if (inventory[listBox1.SelectedIndex - 1].isEquipped())
-                    invNames[listBox1.SelectedIndex + 1] += " (equipped)";
+                else if (player.getInventory(listBox1.SelectedIndex - 1).isEquipped())
+                    player.invNames[listBox1.SelectedIndex + 1] += " (equipped)";
                 updateInventory();
             }
         }
@@ -506,20 +506,20 @@ namespace TextButtonRPG
         {
             if (listBox1.SelectedIndex > 0)
             {
-                if (inventory[listBox1.SelectedIndex] != inventory[player.getSlotsInUse() - 1])
+                if (player.getInventory(listBox1.SelectedIndex) != player.getInventory(player.getSlotsInUse() - 1))
                 {
-                    Item temp = new Item(inventory[listBox1.SelectedIndex + 1]);
-                    string temp2 = invNames[listBox1.SelectedIndex + 1];
-                    inventory[listBox1.SelectedIndex + 1] = inventory[listBox1.SelectedIndex];
-                    inventory[listBox1.SelectedIndex] = temp;
-                    invNames[listBox1.SelectedIndex + 1] = invNames[listBox1.SelectedIndex];
-                    invNames[listBox1.SelectedIndex] = temp2;
-                    if (inventory[listBox1.SelectedIndex].isEquipped())
+                    Item temp = new Item(player.getInventory(listBox1.SelectedIndex + 1));
+                    string temp2 = player.invNames[listBox1.SelectedIndex + 1];
+                    player.inventory[listBox1.SelectedIndex + 1] = player.getInventory(listBox1.SelectedIndex);
+                    player.inventory[listBox1.SelectedIndex] = temp;
+                    player.invNames[listBox1.SelectedIndex + 1] = player.invNames[listBox1.SelectedIndex];
+                    player.invNames[listBox1.SelectedIndex] = temp2;
+                    if (player.getInventory(listBox1.SelectedIndex).isEquipped())
                     {
-                        invNames[listBox1.SelectedIndex + 1] += " (equipped)";
+                        player.invNames[listBox1.SelectedIndex + 1] += " (equipped)";
                     }
-                    else if (inventory[listBox1.SelectedIndex + 1].isEquipped())
-                        invNames[listBox1.SelectedIndex - 1] += " (equipped)";
+                    else if (player.getInventory(listBox1.SelectedIndex + 1).isEquipped())
+                        player.invNames[listBox1.SelectedIndex - 1] += " (equipped)";
                     updateInventory();
                 }
             }
@@ -581,6 +581,12 @@ namespace TextButtonRPG
                 }
                 updatePlayerText();
             }
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            Shop shop = new Shop(0, player);
+            shop.Show();
         }
     }
 }
