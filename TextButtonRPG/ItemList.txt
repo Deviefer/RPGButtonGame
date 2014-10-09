@@ -1,0 +1,27 @@
+﻿**FEATHER:
+	Sword
+	Helm
+	Armor
+	Bow
+	Dagger
+	Axe
+	Staff
+
+**WOODEN:
+	Sword
+	Helm
+	Armor
+	Bow
+	Dagger
+	Axe
+	Staff
+
+**IRON:
+	Sword
+	Helm
+	Armor
+	Bow
+	Dagger
+	Axe
+	Staff
+
